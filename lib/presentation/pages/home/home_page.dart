@@ -200,26 +200,22 @@ class _HomePageState extends ConsumerState<HomePage> {
     final remaining = budgetAmount - spent;
 
     // Determine colors based on status
-    Color progressColor;
     Color statusColor;
     String statusText;
     List<Color> gradient;
 
     switch (status) {
       case BudgetStatus.healthy:
-        progressColor = const Color(0xFF43A047);
         statusColor = const Color(0xFF43A047);
         statusText = '预算健康';
         gradient = const [Color(0xFF43A047), Color(0xFF66BB6A)];
         break;
       case BudgetStatus.warning:
-        progressColor = const Color(0xFFFF9800);
         statusColor = const Color(0xFFFF9800);
         statusText = '接近预算';
         gradient = const [Color(0xFFFF9800), Color(0xFFFFB74D)];
         break;
       case BudgetStatus.exceeded:
-        progressColor = const Color(0xFFE53935);
         statusColor = const Color(0xFFE53935);
         statusText = '已超支';
         gradient = const [Color(0xFFE53935), Color(0xFFEF5350)];

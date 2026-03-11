@@ -13,7 +13,6 @@ class iCloudSyncService implements SyncService {
   static const String _timestampKey = 'icloud_timestamp';
 
   SharedPreferences? _prefs;
-  SyncConfig _config = const SyncConfig();
 
   @override
   String get providerName => 'iCloud';
@@ -23,7 +22,7 @@ class iCloudSyncService implements SyncService {
 
   @override
   Future<void> initialize(SyncConfig config) async {
-    _config = config;
+    // iCloud 不需要额外配置，config 参数保留以实现接口
     _prefs = await SharedPreferences.getInstance();
   }
 
@@ -116,10 +115,8 @@ class iCloudSyncService implements SyncService {
   @override
   Future<bool> sync() async {
     try {
-      // 拉取远程数据
-      final remoteData = await pull();
-
-      // TODO: 实现冲突解决策略（last-write-wins）
+      // TODO: 拉取远程数据并实现冲突解决策略（last-write-wins）
+      // final remoteData = await pull();
 
       // 推送本地数据
       return true;

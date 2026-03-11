@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 /// 本地AI服务 - 使用关键词匹配进行消费分类
 /// 作为云端API的补充，提供快速免费的本地分类能力
 class LocalAiService {

@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'sync_config.dart';
 import 'sync_service.dart';
@@ -35,7 +33,7 @@ class SupabaseSyncService implements SyncService {
 
     try {
       final response = await _client!.from('expenses').select('id').limit(1);
-      return response != null || response is List;
+      return response.isNotEmpty;
     } catch (e) {
       return false;
     }
@@ -126,10 +124,8 @@ class SupabaseSyncService implements SyncService {
   @override
   Future<bool> sync() async {
     try {
-      // 先拉取远程数据
-      final remoteData = await pull();
-
-      // TODO: 实现冲突解决策略（last-write-wins）
+      // TODO: 拉取远程数据并实现冲突解决策略（last-write-wins）
+      // final remoteData = await pull();
 
       // 推送本地数据
       // 这里需要从数据库获取最新数据

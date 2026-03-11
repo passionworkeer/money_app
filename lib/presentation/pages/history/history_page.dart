@@ -23,7 +23,6 @@ class HistoryPage extends ConsumerStatefulWidget {
 }
 
 class _HistoryPageState extends ConsumerState<HistoryPage> {
-  String _searchQuery = '';
   final _exportService = ExportService();
 
   @override
@@ -177,7 +176,6 @@ class _HistoryPageState extends ConsumerState<HistoryPage> {
           contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         ),
         onChanged: (value) {
-          _searchQuery = value;
         },
         onSubmitted: (value) {
           ref.read(filterOptionsProvider.notifier).state =

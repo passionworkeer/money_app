@@ -12,7 +12,6 @@ import '../../data/datasources/local/database_helper.dart';
 /// Provides export to JSON, share functionality, and data restoration.
 class BackupService {
   static const String _backupVersion = '1.0.0';
-  static const String _backupFileName = 'ai_expense_backup.json';
 
   final DatabaseHelper _databaseHelper;
 
