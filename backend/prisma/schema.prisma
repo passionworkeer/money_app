@@ -1,0 +1,155 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// ==================== User & Auth ====================
+
+model User {
+  id           String        @id @default(uuid())
+  email        String        @unique
+  passwordHash String        @map("password_hash")
+  nickname     String?
+  createdAt    DateTime      @default(now()) @map("created_at")
+  updatedAt    DateTime      @updatedAt @map("updated_at")
+
+  // Relations
+  sessions         UserSession[]
+  expenses         Expense[]
+  budgets         Budget[]
+  settings        UserSettings?
+  automationRules AutomationRule[]
+  syncLogs        SyncLog[]
+
+  @@map("users")
+}
+
+model UserSession {
+  id           String   @id @default(uuid())
+  userId       String   @map("user_id")
+  token        String   @db.VarChar(500) @unique
+  refreshToken String?  @db.VarChar(500) @map("refresh_token")
+  expiresAt    DateTime @map("expires_at")
+  createdAt    DateTime @default(now()) @map("created_at")
+  ipAddress    String?  @map("ip_address")
+  userAgent    String?  @map("user_agent")
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_sessions")
+  @@index([userId])
+}
+
+// ==================== Core Business ====================
+
+model Expense {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  amount      Float
+  description String
+  category    String
+  date        DateTime
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  isSynced    Boolean  @default(false) @map("is_synced")
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("expenses")
+  @@index([userId])
+  @@index([userId, date])
+  @@index([userId, category])
+}
+
+model Budget {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  amount    Float
+  month     Int      // 1-12
+  year      Int
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, month, year])
+  @@map("budgets")
+  @@index([userId])
+}
+
+model UserSettings {
+  id              String   @id @default(uuid())
+  userId          String   @unique @map("user_id")
+
+  // AI API Keys (encrypted)
+  openaiApiKey    String?  @map("openai_api_key")
+  claudeApiKey   String?  @map("claude_api_key")
+  ernieApiKey    String?  @map("ernie_api_key")
+  qwenApiKey     String?  @map("qwen_api_key")
+  sparkApiKey    String?  @map("spark_api_key")
+  hunyuanApiKey  String?  @map("hunyuan_api_key")
+  zhipuApiKey    String?  @map("zhipu_api_key")
+
+  // Preferences
+  preferredModel  String?  @map("preferred_model")
+  defaultCurrency String  @default("CNY") @map("default_currency")
+  themeMode      Int      @default(0) @map("theme_mode") // 0: system, 1: light, 2: dark
+  locale         String   @default("zh") @map("locale")
+
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_settings")
+  @@index([userId])
+}
+
+model AutomationRule {
+  id           String   @id @default(uuid())
+  userId       String   @map("user_id")
+  name         String
+  triggerType  String   @map("trigger_type") // scheduled, amountThreshold, category
+  actionType   String   @map("action_type") // notification, categorize, autoRecord
+  config       Json     // AutomationConfig JSON
+  isEnabled    Boolean  @default(true) @map("is_enabled")
+  lastTriggered DateTime? @map("last_triggered")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("automation_rules")
+  @@index([userId])
+}
+
+// ==================== Sync ====================
+
+model SyncLog {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  action      String   // pull, push, full
+  status      String   // success, failed
+  details     Json?    // Additional details
+  recordCount Int?     @map("record_count")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sync_logs")
+  @@index([userId])
+  @@index([userId, createdAt])
+}
