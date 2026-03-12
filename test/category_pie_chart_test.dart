@@ -8,15 +8,6 @@ import 'package:ai_expense_tracker/core/constants/categories.dart';
 
 void main() {
   group('CategoryPieChart Tests', () {
-    late ProviderContainer container;
-
-    setUp(() {
-      container = ProviderContainer();
-    });
-
-    tearDown(() {
-      container.dispose();
-    });
 
     Widget createTestWidget({
       required Map<String, double> categoryTotals,
@@ -35,7 +26,7 @@ void main() {
     }
 
     testWidgets('CategoryPieChart can be created with data', (WidgetTester tester) async {
-      final categoryTotals = {
+      const categoryTotals = {
         'food': 500.0,
         'transport': 300.0,
         'shopping': 200.0,
@@ -52,7 +43,7 @@ void main() {
     });
 
     testWidgets('CategoryPieChart renders pie chart', (WidgetTester tester) async {
-      final categoryTotals = {
+      const categoryTotals = {
         'food': 500.0,
         'transport': 300.0,
         'shopping': 200.0,
@@ -80,7 +71,7 @@ void main() {
     });
 
     testWidgets('CategoryPieChart shows legend', (WidgetTester tester) async {
-      final categoryTotals = {
+      const categoryTotals = {
         'food': 500.0,
         'transport': 300.0,
         'shopping': 200.0,
@@ -100,7 +91,7 @@ void main() {
     });
 
     testWidgets('CategoryPieChart shows title "分类占比"', (WidgetTester tester) async {
-      final categoryTotals = {
+      const categoryTotals = {
         'food': 500.0,
       };
 
@@ -115,7 +106,7 @@ void main() {
     });
 
     testWidgets('CategoryPieChart renders correctly with single category', (WidgetTester tester) async {
-      final categoryTotals = {
+      const categoryTotals = {
         'food': 1000.0,
       };
 
@@ -132,7 +123,7 @@ void main() {
     });
 
     testWidgets('CategoryPieChart shows multiple categories in legend', (WidgetTester tester) async {
-      final categoryTotals = {
+      const categoryTotals = {
         'food': 400.0,
         'transport': 300.0,
         'shopping': 200.0,
@@ -153,7 +144,7 @@ void main() {
     });
 
     testWidgets('CategoryPieChart has container decoration', (WidgetTester tester) async {
-      final categoryTotals = {
+      const categoryTotals = {
         'food': 500.0,
       };
 
@@ -173,7 +164,7 @@ void main() {
     });
 
     testWidgets('CategoryPieChart shows legend items with color boxes', (WidgetTester tester) async {
-      final categoryTotals = {
+      const categoryTotals = {
         'food': 500.0,
         'transport': 300.0,
       };
@@ -192,7 +183,7 @@ void main() {
     });
 
     testWidgets('CategoryPieChart calculates percentages correctly', (WidgetTester tester) async {
-      final categoryTotals = {
+      const categoryTotals = {
         'food': 750.0,
         'transport': 250.0,
       };

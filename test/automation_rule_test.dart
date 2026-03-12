@@ -310,7 +310,7 @@ void main() {
     });
 
     test('AutomationConfig fromJson handles invalid scheduleHour', () {
-      final json = {
+      const json = {
         'scheduleHour': 25, // Invalid
         'scheduleMinute': 0,
       };
@@ -321,7 +321,7 @@ void main() {
     });
 
     test('AutomationConfig fromJson handles invalid scheduleMinute', () {
-      final json = {
+      const json = {
         'scheduleHour': 10,
         'scheduleMinute': 60, // Invalid
       };
@@ -332,7 +332,7 @@ void main() {
     });
 
     test('AutomationConfig fromJson handles invalid thresholdAmount', () {
-      final json = {
+      const json = {
         'thresholdAmount': -100, // Invalid - negative
       };
 
@@ -342,7 +342,7 @@ void main() {
     });
 
     test('AutomationConfig fromJson handles invalid weekDay', () {
-      final json = {
+      const json = {
         'weekDay': 8, // Invalid
       };
 
@@ -352,15 +352,15 @@ void main() {
     });
 
     test('AutomationConfig fromJson handles valid weekDay boundaries', () {
-      final jsonMin = {'weekDay': 1};
-      final jsonMax = {'weekDay': 7};
+      const jsonMin = {'weekDay': 1};
+      const jsonMax = {'weekDay': 7};
 
       expect(AutomationConfig.fromJson(jsonMin).weekDay, 1);
       expect(AutomationConfig.fromJson(jsonMax).weekDay, 7);
     });
 
     test('AutomationConfig fromJson handles keywords', () {
-      final json = {
+      const json = {
         'keywords': ['早餐', '午餐', '晚餐'],
       };
 
@@ -378,7 +378,7 @@ void main() {
     });
 
     test('AutomationConfig fromJson handles num thresholdAmount', () {
-      final json = {
+      const json = {
         'thresholdAmount': 100, // int instead of double
       };
 

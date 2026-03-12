@@ -98,13 +98,14 @@ void main() {
     });
 
     test('Budget fromMap handles num amount conversion', () {
+      final now = DateTime.now().millisecondsSinceEpoch;
       final map = {
         'id': 'test-id',
         'amount': 1000, // int instead of double
         'month': 6,
         'year': 2024,
-        'createdAt': DateTime.now().millisecondsSinceEpoch,
-        'updatedAt': DateTime.now().millisecondsSinceEpoch,
+        'createdAt': now,
+        'updatedAt': now,
       };
 
       final budget = Budget.fromMap(map);
@@ -114,13 +115,14 @@ void main() {
     });
 
     test('Budget fromMap handles num amount with decimal', () {
+      final now = DateTime.now().millisecondsSinceEpoch;
       final map = {
         'id': 'test-id',
         'amount': 1234.56, // double as num
         'month': 7,
         'year': 2024,
-        'createdAt': DateTime.now().millisecondsSinceEpoch,
-        'updatedAt': DateTime.now().millisecondsSinceEpoch,
+        'createdAt': now,
+        'updatedAt': now,
       };
 
       final budget = Budget.fromMap(map);

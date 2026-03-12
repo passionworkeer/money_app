@@ -6,15 +6,6 @@ import 'package:ai_expense_tracker/data/models/report_models.dart';
 
 void main() {
   group('MonthlyReportCard Tests', () {
-    late ProviderContainer container;
-
-    setUp(() {
-      container = ProviderContainer();
-    });
-
-    tearDown(() {
-      container.dispose();
-    });
 
     Widget createTestWidget(MonthlyReport report) {
       return ProviderScope(
