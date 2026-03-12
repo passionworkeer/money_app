@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../core/constants/app_colors.dart';
 import '../../../data/models/report_models.dart';
 
 /// 月度报告卡片组件
@@ -144,15 +143,15 @@ class MonthlyReportCard extends StatelessWidget {
           children: [
             Text(
               isOver ? '已超出预算' : '预算使用',
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white70,
                 fontSize: 12,
               ),
             ),
             Text(
               '${percent.toStringAsFixed(0)}%',
-              style: TextStyle(
-                color: isOver ? Colors.red.shade200 : Colors.white70,
+              style: const TextStyle(
+                color: Colors.white70,
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
               ),

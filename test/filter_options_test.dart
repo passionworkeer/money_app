@@ -184,7 +184,7 @@ void main() {
     });
 
     test('FilterOptions clear with no searchQuery preserves only sortBy', () {
-      final filter = FilterOptions(
+      const filter = FilterOptions(
         category: 'food',
         minAmount: 10.0,
         sortBy: SortBy.dateAsc,

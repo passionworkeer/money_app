@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ai_expense_tracker/core/services/sync/sync_config.dart';
+import 'package:ai_expense_tracker/core/services/sync/sync_service.dart';
 
 void main() {
   group('SyncProvider Tests', () {
@@ -69,7 +70,7 @@ void main() {
 
   group('SyncConfig Tests', () {
     test('SyncConfig can be created with required fields', () {
-      final config = SyncConfig(
+      const config = SyncConfig(
         provider: SyncProvider.supabase,
         supabaseUrl: 'https://example.supabase.co',
         supabaseAnonKey: 'test-key',
@@ -95,7 +96,7 @@ void main() {
     });
 
     test('SyncConfig copyWith works correctly', () {
-      final original = SyncConfig(
+      const original = SyncConfig(
         provider: SyncProvider.supabase,
         supabaseUrl: 'https://example.supabase.co',
         supabaseAnonKey: 'test-key',
@@ -118,7 +119,7 @@ void main() {
     });
 
     test('SyncConfig copyWith preserves original values when not specified', () {
-      final original = SyncConfig(
+      const original = SyncConfig(
         provider: SyncProvider.webdav,
         webdavUrl: 'https://webdav.example.com',
         webdavUsername: 'user',
@@ -135,7 +136,7 @@ void main() {
     });
 
     test('SyncConfig copyWith with null errorMessage clears error', () {
-      final original = SyncConfig(
+      const original = SyncConfig(
         errorMessage: 'Previous error',
       );
 
@@ -146,7 +147,7 @@ void main() {
     });
 
     test('SyncConfig toMap and fromMap works correctly', () {
-      final original = SyncConfig(
+      const original = SyncConfig(
         provider: SyncProvider.s3,
         status: SyncStatus.success,
         s3AccessKey: 'access-key',

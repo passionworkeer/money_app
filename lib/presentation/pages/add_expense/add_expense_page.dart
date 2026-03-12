@@ -85,7 +85,7 @@ class _AddExpensePageState extends ConsumerState<AddExpensePage>
         return;
       }
 
-      final status = await _speechService.getStatus();
+      final status = _speechService.getStatus();
       setState(() {
         _isListening = true;
         _recognizedText = '';

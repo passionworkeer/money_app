@@ -2,14 +2,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/utils/date_utils.dart';
 import '../../data/models/expense_model.dart';
 import '../../data/models/report_models.dart';
-import '../../data/models/budget_model.dart';
-import '../../data/models/user_settings.dart';
 import '../../data/repositories/expense_repository_impl.dart';
 import '../../domain/repositories/expense_repository.dart';
 import '../../data/datasources/local/database_helper.dart';
 import '../providers/expense_providers.dart';
 import '../providers/settings_providers.dart';
-import '../providers/budget_providers.dart';
 import '../../core/services/ai_analysis_service.dart';
 
 /// Repository Provider
@@ -171,7 +168,6 @@ final spendingInsightProvider = FutureProvider.family<SpendingInsight?, int>((re
 
   if (expenses.isEmpty) return null;
 
-  final now = DateTime.now();
   final year = yearMonth ~/ 100;
   final month = yearMonth % 100;
 

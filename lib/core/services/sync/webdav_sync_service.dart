@@ -61,7 +61,7 @@ class WebDAVSyncService implements SyncService {
     try {
       // 尝试 PROPFIND 请求来检查服务器是否可达
       final response = await _client!.request(
-        HttpMethod.PROPFIND,
+        HttpMethod.propfind,
         _baseUrl,
         headers: {
           ..._authHeaders,
@@ -172,28 +172,28 @@ class WebDAVSyncService implements SyncService {
 
 /// HTTP 方法枚举
 enum HttpMethod {
-  GET,
-  PUT,
-  DELETE,
-  PROPFIND,
+  get,
+  put,
+  delete,
+  propfind,
 }
 
 extension HttpMethodExtension on HttpMethod {
   String get value {
     switch (this) {
-      case HttpMethod.GET:
+      case HttpMethod.get:
         return 'GET';
-      case HttpMethod.PUT:
+      case HttpMethod.put:
         return 'PUT';
-      case HttpMethod.DELETE:
+      case HttpMethod.delete:
         return 'DELETE';
-      case HttpMethod.PROPFIND:
+      case HttpMethod.propfind:
         return 'PROPFIND';
     }
   }
 }
 
-extension httpClientExtension on http.Client {
+extension HttpClientExtension on http.Client {
   Future<http.Response> request(
     HttpMethod method,
     String url, {

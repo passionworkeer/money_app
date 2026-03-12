@@ -176,7 +176,7 @@ class _ReportPageState extends ConsumerState<ReportPage> with SingleTickerProvid
                 onRefresh: () => ref.invalidate(spendingInsightProvider(_selectedYearMonth)),
               ),
               loading: () => const SpendingInsightCard(isLoading: true),
-              error: (e, _) => SpendingInsightCard(insight: null),
+              error: (e, _) => const SpendingInsightCard(insight: null),
             ),
             const SizedBox(height: 20),
             // 趋势图
@@ -206,7 +206,6 @@ class _ReportPageState extends ConsumerState<ReportPage> with SingleTickerProvid
             reportAsync.when(
               data: (report) => TopCategoryList(
                 categories: report.sortedCategories,
-                total: report.totalAmount,
               ),
               loading: () => _buildLoadingCard(height: 300),
               error: (e, _) => _buildErrorCard(e.toString(), height: 300),
@@ -263,7 +262,6 @@ class _ReportPageState extends ConsumerState<ReportPage> with SingleTickerProvid
             reportAsync.when(
               data: (report) => TopCategoryList(
                 categories: report.sortedCategories,
-                total: report.totalAmount,
               ),
               loading: () => _buildLoadingCard(height: 300),
               error: (e, _) => _buildErrorCard(e.toString(), height: 300),
@@ -297,7 +295,7 @@ class _ReportPageState extends ConsumerState<ReportPage> with SingleTickerProvid
             color: AppColors.primary,
           ),
           Text(
-            '${_selectedYear}年',
+            '$_selectedYear年',
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -340,7 +338,7 @@ class _ReportPageState extends ConsumerState<ReportPage> with SingleTickerProvid
             color: AppColors.primary,
           ),
           Text(
-            '${_selectedYear}年',
+            '$_selectedYear年',
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../core/constants/app_colors.dart';
 import '../../../data/models/report_models.dart';
 
 /// AI 洞察卡片组件
@@ -20,12 +19,12 @@ class SpendingInsightCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            const Color(0xFF11998e),
-            const Color(0xFF38ef7d),
+            Color(0xFF11998e),
+            Color(0xFF38ef7d),
           ],
         ),
         borderRadius: BorderRadius.circular(20),
@@ -169,8 +168,8 @@ class SpendingInsightCard extends StatelessWidget {
                     Expanded(
                       child: Text(
                         entry.value,
-                        style: TextStyle(
-                          color: Colors.white.withOpacity(0.9),
+                        style: const TextStyle(
+                          color: Colors.white,
                           fontSize: 13,
                         ),
                       ),
@@ -212,15 +211,15 @@ class SpendingInsightCardCompact extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
+          const Row(
             children: [
-              const Icon(
+              Icon(
                 Icons.lightbulb_outline,
                 color: Colors.white,
                 size: 16,
               ),
-              const SizedBox(width: 6),
-              const Text(
+              SizedBox(width: 6),
+              Text(
                 'AI 洞察',
                 style: TextStyle(
                   color: Colors.white,

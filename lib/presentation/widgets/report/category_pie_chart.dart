@@ -3,7 +3,6 @@ import 'package:fl_chart/fl_chart.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/categories.dart';
 import '../../../data/models/report_models.dart';
-import '../category_icon.dart';
 
 /// 分类饼图组件
 class CategoryPieChart extends StatefulWidget {
@@ -111,7 +110,6 @@ class _CategoryPieChartState extends State<CategoryPieChart> {
       final index = entry.key;
       final data = entry.value;
       final isTouched = index == touchedIndex;
-      final category = ExpenseCategory.fromValue(data.key);
       final color = AppColors.categoryColors[data.key] ?? AppColors.textSecondary;
       final percentage = widget.total > 0 ? (data.value / widget.total * 100) : 0;
 
@@ -178,8 +176,6 @@ class CategoryPieChartSmall extends StatelessWidget {
     if (categories.isEmpty) {
       return const SizedBox.shrink();
     }
-
-    final total = categories.fold(0.0, (sum, c) => sum + c.amount);
 
     return SizedBox(
       height: 120,

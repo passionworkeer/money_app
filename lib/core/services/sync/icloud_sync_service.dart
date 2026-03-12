@@ -6,7 +6,7 @@ import 'sync_service.dart';
 /// iCloud 同步服务实现
 /// 使用 SharedPreferences 模拟 iCloud Key-Value 存储
 /// 在真实 iOS 环境中，应使用 flutter_icloud_container
-class iCloudSyncService implements SyncService {
+class ICloudSyncService implements SyncService {
   static const String _expensesKey = 'icloud_expenses';
   static const String _budgetsKey = 'icloud_budgets';
   static const String _settingsKey = 'icloud_settings';

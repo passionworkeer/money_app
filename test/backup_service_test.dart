@@ -158,7 +158,7 @@ void main() {
 
     group('importData', () {
       test('should import valid data', () async {
-        final exportJson = '''
+        const exportJson = '''
         {
           "version": "1.0.0",
           "exportDate": "2024-01-01T00:00:00.000",
@@ -209,7 +209,7 @@ void main() {
       });
 
       test('should throw on missing required fields', () async {
-        final invalidJson = '{"version": "1.0.0", "expenses": []}';
+        const invalidJson = '{"version": "1.0.0", "expenses": []}';
 
         expect(
           () => backupService.importData(invalidJson),
@@ -218,7 +218,7 @@ void main() {
       });
 
       test('should throw on incompatible version', () async {
-        final incompatibleJson = '''
+        const incompatibleJson = '''
         {
           "version": "2.0.0",
           "expenses": [],
@@ -234,7 +234,7 @@ void main() {
       });
 
       test('should handle compatible minor version', () async {
-        final json = '''
+        const json = '''
         {
           "version": "1.5.0",
           "expenses": [],
@@ -248,7 +248,7 @@ void main() {
       });
 
       test('should validate expense data - missing required fields', () async {
-        final invalidJson = '''
+        const invalidJson = '''
         {
           "version": "1.0.0",
           "expenses": [{"id": "exp1"}],
@@ -264,7 +264,7 @@ void main() {
       });
 
       test('should validate expense data - invalid amount type', () async {
-        final invalidJson = '''
+        const invalidJson = '''
         {
           "version": "1.0.0",
           "expenses": [{"id": "exp1", "amount": "not a number", "description": "test", "category": "food", "date": 1704067200000, "createdAt": 1704067200000}],
@@ -280,7 +280,7 @@ void main() {
       });
 
       test('should validate expense data - invalid amount range', () async {
-        final invalidJson = '''
+        const invalidJson = '''
         {
           "version": "1.0.0",
           "expenses": [{"id": "exp1", "amount": -100, "description": "test", "category": "food", "date": 1704067200000, "createdAt": 1704067200000}],
@@ -296,7 +296,7 @@ void main() {
       });
 
       test('should validate budget data - missing required fields', () async {
-        final invalidJson = '''
+        const invalidJson = '''
         {
           "version": "1.0.0",
           "expenses": [],
@@ -312,7 +312,7 @@ void main() {
       });
 
       test('should validate budget data - invalid month range', () async {
-        final invalidJson = '''
+        const invalidJson = '''
         {
           "version": "1.0.0",
           "expenses": [],
@@ -328,7 +328,7 @@ void main() {
       });
 
       test('should validate budget data - invalid year range', () async {
-        final invalidJson = '''
+        const invalidJson = '''
         {
           "version": "1.0.0",
           "expenses": [],
@@ -344,7 +344,7 @@ void main() {
       });
 
       test('should throw on invalid date timestamp', () async {
-        final invalidJson = '''
+        const invalidJson = '''
         {
           "version": "1.0.0",
           "expenses": [{"id": "exp1", "amount": 100, "description": "test", "category": "food", "date": "not a timestamp", "createdAt": 1704067200000}],
@@ -432,7 +432,7 @@ void main() {
 
     group('Version Compatibility', () {
       test('should accept version 1.0.0', () async {
-        final json = '''
+        const json = '''
         {
           "version": "1.0.0",
           "expenses": [],
@@ -446,7 +446,7 @@ void main() {
       });
 
       test('should accept version 1.1.0', () async {
-        final json = '''
+        const json = '''
         {
           "version": "1.1.0",
           "expenses": [],
@@ -460,7 +460,7 @@ void main() {
       });
 
       test('should reject version 0.9.0', () async {
-        final json = '''
+        const json = '''
         {
           "version": "0.9.0",
           "expenses": [],
@@ -476,7 +476,7 @@ void main() {
       });
 
       test('should reject empty version', () async {
-        final json = '''
+        const json = '''
         {
           "version": "",
           "expenses": [],

@@ -1,26 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ai_expense_tracker/data/models/automation_rule.dart';
 
 void main() {
-  late AutomationService automationService;
-  late MockDatabaseHelper mockDb;
-  late MockFlutterLocalNotificationsPlugin mockNotifications;
-
-  setUp(() {
-    mockDb = MockDatabaseHelper();
-    mockNotifications = MockFlutterLocalNotificationsPlugin();
-
-    // Create service with mocked dependencies via reflection or direct instantiation
-    // Since we can't easily inject mocks, we'll test the logic separately
-    automationService = AutomationService();
-  });
-
   group('AutomationService - Unit Tests', () {
     test('AutomationService can check budget threshold with fixed amount - should trigger', () async {
       // Test the threshold checking logic directly
       const threshold = 500.0;
       const isPercentage = false;
-      final amount = 600.0;
+      const amount = 600.0;
 
       bool shouldTrigger = false;
       if (!isPercentage) {
@@ -33,7 +19,7 @@ void main() {
     test('AutomationService can check budget threshold with fixed amount - should not trigger', () {
       const threshold = 500.0;
       const isPercentage = false;
-      final amount = 300.0;
+      const amount = 300.0;
 
       bool shouldTrigger = false;
       if (!isPercentage) {
@@ -47,9 +33,9 @@ void main() {
       const threshold = 80.0;
       const budgetAmount = 5000.0;
       const monthTotal = 4500.0;
-      final percentage = (monthTotal / budgetAmount) * 100;
+      const percentage = (monthTotal / budgetAmount) * 100;
 
-      final shouldTrigger = percentage >= threshold;
+      const shouldTrigger = percentage >= threshold;
 
       expect(shouldTrigger, isTrue);
       expect(percentage, 90.0);
@@ -59,9 +45,9 @@ void main() {
       const threshold = 80.0;
       const budgetAmount = 5000.0;
       const monthTotal = 3000.0;
-      final percentage = (monthTotal / budgetAmount) * 100;
+      const percentage = (monthTotal / budgetAmount) * 100;
 
-      final shouldTrigger = percentage >= threshold;
+      const shouldTrigger = percentage >= threshold;
 
       expect(shouldTrigger, isFalse);
       expect(percentage, 60.0);
@@ -71,8 +57,6 @@ void main() {
       final now = DateTime(2024, 1, 15, 20, 0, 5); // 20:00:05
       const scheduleHour = 20;
       const scheduleMinute = 0;
-      const scheduleType = 'daily';
-      const weekDay = 1; // Not used for daily
 
       final shouldTrigger = now.hour == scheduleHour &&
           now.minute == scheduleMinute &&
@@ -85,7 +69,6 @@ void main() {
       final now = DateTime(2024, 1, 15, 19, 30, 0); // 19:30:00
       const scheduleHour = 20;
       const scheduleMinute = 0;
-      const scheduleType = 'daily';
 
       final shouldTrigger = now.hour == scheduleHour &&
           now.minute == scheduleMinute &&
@@ -99,7 +82,6 @@ void main() {
       final now = DateTime(2024, 1, 15, 10, 0, 5); // Monday Jan 15, 10:00:05
       const scheduleHour = 10;
       const scheduleMinute = 0;
-      const scheduleType = 'weekly';
       const weekDay = 1; // Monday
 
       final shouldTrigger = now.weekday == weekDay &&
@@ -115,7 +97,6 @@ void main() {
       final now = DateTime(2024, 1, 16, 10, 0, 5); // Tuesday Jan 16, 10:00:05
       const scheduleHour = 10;
       const scheduleMinute = 0;
-      const scheduleType = 'weekly';
       const weekDay = 1; // Monday
 
       final shouldTrigger = now.weekday == weekDay &&
@@ -185,7 +166,7 @@ void main() {
 
     test('AutomationService handles null threshold - should skip', () {
       const threshold = null;
-      final amount = 500.0;
+      const amount = 500.0;
 
       bool shouldTrigger = false;
       if (threshold != null) {
@@ -235,7 +216,7 @@ void main() {
     test('Percentage calculation is correct', () {
       const budgetAmount = 1000.0;
       const monthTotal = 250.0;
-      final percentage = (monthTotal / budgetAmount) * 100;
+      const percentage = (monthTotal / budgetAmount) * 100;
 
       expect(percentage, 25.0);
     });

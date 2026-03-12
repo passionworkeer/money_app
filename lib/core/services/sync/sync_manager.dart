@@ -103,7 +103,7 @@ class SyncManager {
         _currentService = S3SyncService();
         break;
       case SyncProvider.icloud:
-        _currentService = iCloudSyncService();
+        _currentService = ICloudSyncService();
         break;
       case SyncProvider.none:
         return;

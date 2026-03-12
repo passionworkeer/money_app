@@ -6,6 +6,7 @@ import 'package:ai_expense_tracker/presentation/pages/statistics/statistics_page
 import 'package:ai_expense_tracker/presentation/providers/expense_providers.dart';
 import 'package:ai_expense_tracker/presentation/providers/budget_providers.dart';
 import 'package:ai_expense_tracker/domain/repositories/expense_repository.dart';
+import 'package:ai_expense_tracker/domain/repositories/budget_repository.dart';
 import 'package:ai_expense_tracker/data/models/expense_model.dart';
 import 'package:ai_expense_tracker/data/models/budget_model.dart';
 
@@ -86,7 +87,6 @@ class MockBudgetRepository implements BudgetRepository {
 
 void main() {
   group('StatisticsPage Tests', () {
-    late ProviderContainer container;
     late GoRouter router;
 
     Widget createTestWidget({
@@ -155,8 +155,7 @@ void main() {
     });
 
     testWidgets('StatisticsPage shows monthly total when data exists', (WidgetTester tester) async {
-      final now = DateTime.now();
-      final mockCategoryTotals = {
+      const mockCategoryTotals = {
         'food': 500.0,
         'transport': 200.0,
         'shopping': 300.0,
@@ -174,7 +173,7 @@ void main() {
     });
 
     testWidgets('StatisticsPage shows category breakdown when data exists', (WidgetTester tester) async {
-      final mockCategoryTotals = {
+      const mockCategoryTotals = {
         'food': 500.0,
         'transport': 200.0,
       };
@@ -238,7 +237,7 @@ void main() {
     });
 
     testWidgets('StatisticsPage shows category with correct percentage', (WidgetTester tester) async {
-      final mockCategoryTotals = {
+      const mockCategoryTotals = {
         'food': 750.0,
         'transport': 250.0,
       };
@@ -256,7 +255,7 @@ void main() {
     });
 
     testWidgets('StatisticsPage shows daily average', (WidgetTester tester) async {
-      final mockCategoryTotals = {
+      const mockCategoryTotals = {
         'food': 500.0,
       };
 
@@ -313,7 +312,7 @@ void main() {
     });
 
     testWidgets('StatisticsPage displays category icons', (WidgetTester tester) async {
-      final mockCategoryTotals = {
+      const mockCategoryTotals = {
         'food': 500.0,
         'transport': 300.0,
       };

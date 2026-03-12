@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
-import '../../../core/constants/categories.dart';
 import '../../../data/models/report_models.dart';
 import '../category_icon.dart';
 
 /// Top 分类列表组件
 class TopCategoryList extends StatelessWidget {
   final List<CategoryData> categories;
-  final double total;
   final bool showAmount;
 
   const TopCategoryList({
     super.key,
     required this.categories,
-    required this.total,
     this.showAmount = true,
   });
 

@@ -4,9 +4,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ai_expense_tracker/presentation/pages/report/report_page.dart';
 import 'package:ai_expense_tracker/presentation/providers/report_providers.dart';
+import 'package:ai_expense_tracker/presentation/widgets/report/monthly_report_card.dart';
+import 'package:ai_expense_tracker/presentation/widgets/report/category_pie_chart.dart';
+import 'package:ai_expense_tracker/presentation/widgets/report/trend_line_chart.dart';
+import 'package:ai_expense_tracker/presentation/widgets/report/spending_insight_card.dart';
+import 'package:ai_expense_tracker/presentation/widgets/report/top_category_list.dart';
 import 'package:ai_expense_tracker/domain/repositories/expense_repository.dart';
 import 'package:ai_expense_tracker/data/models/expense_model.dart';
-import 'package:ai_expense_tracker/data/models/report_models.dart';
 
 // Mock ExpenseRepository for testing
 class MockExpenseRepository implements ExpenseRepository {
@@ -63,7 +67,6 @@ class MockExpenseRepository implements ExpenseRepository {
 
 void main() {
   group('ReportPage Tests', () {
-    late ProviderContainer container;
     late GoRouter router;
 
     Widget createTestWidget({
@@ -138,7 +141,7 @@ void main() {
     });
 
     testWidgets('ReportPage shows MonthlyReportCard widget', (WidgetTester tester) async {
-      final mockCategoryTotals = {
+      const mockCategoryTotals = {
         'food': 500.0,
         'transport': 200.0,
       };
@@ -154,7 +157,7 @@ void main() {
     });
 
     testWidgets('ReportPage shows CategoryPieChart widget', (WidgetTester tester) async {
-      final mockCategoryTotals = {
+      const mockCategoryTotals = {
         'food': 500.0,
         'transport': 200.0,
       };
@@ -170,7 +173,7 @@ void main() {
     });
 
     testWidgets('ReportPage shows TrendLineChart widget', (WidgetTester tester) async {
-      final mockCategoryTotals = {
+      const mockCategoryTotals = {
         'food': 500.0,
       };
 

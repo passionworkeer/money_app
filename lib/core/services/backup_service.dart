@@ -105,7 +105,7 @@ class BackupService {
       if (!data.containsKey('expenses') ||
           !data.containsKey('budgets') ||
           !data.containsKey('settings')) {
-        throw BackupException('Invalid backup format: missing required fields');
+        throw const BackupException('Invalid backup format: missing required fields');
       }
 
       // Parse expenses
@@ -115,13 +115,13 @@ class BackupService {
 
       // Validate data size limits
       if (expensesList.length > 10000) {
-        throw BackupException('数据量过大，最多支持10000条记录');
+        throw const BackupException('数据量过大，最多支持10000条记录');
       }
 
       // Validate description length
       for (final expense in expensesList) {
         if (expense.description.length > 500) {
-          throw BackupException('备注内容过长，不能超过500字符');
+          throw const BackupException('备注内容过长，不能超过500字符');
         }
       }
 
@@ -143,7 +143,7 @@ class BackupService {
         version: version,
       );
     } on FormatException {
-      throw BackupException('Invalid JSON format');
+      throw const BackupException('Invalid JSON format');
     }
   }
 
@@ -222,29 +222,29 @@ class BackupService {
     // 验证必填字段
     if (map['id'] == null || map['amount'] == null ||
         map['description'] == null || map['category'] == null) {
-      throw BackupException('Invalid expense data: missing required fields');
+      throw const BackupException('Invalid expense data: missing required fields');
     }
 
     // 类型验证 - amount
     final amount = map['amount'];
     if (amount is! num) {
-      throw BackupException('Invalid expense data: amount must be a number');
+      throw const BackupException('Invalid expense data: amount must be a number');
     }
 
     // 金额范围验证
     final amountValue = amount.toDouble();
     if (amountValue < 0 || amountValue > 999999999) {
-      throw BackupException('Invalid expense data: amount out of valid range');
+      throw const BackupException('Invalid expense data: amount out of valid range');
     }
 
     // 类型验证 - date
     if (map['date'] is! int) {
-      throw BackupException('Invalid expense data: date must be a timestamp');
+      throw const BackupException('Invalid expense data: date must be a timestamp');
     }
 
     // 类型验证 - createdAt
     if (map['createdAt'] is! int) {
-      throw BackupException('Invalid expense data: createdAt must be a timestamp');
+      throw const BackupException('Invalid expense data: createdAt must be a timestamp');
     }
 
     return Expense(
@@ -273,34 +273,34 @@ class BackupService {
     // 验证必填字段
     if (map['id'] == null || map['amount'] == null ||
         map['month'] == null || map['year'] == null) {
-      throw BackupException('Invalid budget data: missing required fields');
+      throw const BackupException('Invalid budget data: missing required fields');
     }
 
     // 类型验证 - amount
     final amount = map['amount'];
     if (amount is! num) {
-      throw BackupException('Invalid budget data: amount must be a number');
+      throw const BackupException('Invalid budget data: amount must be a number');
     }
 
     // 金额范围验证
     final amountValue = amount.toDouble();
     if (amountValue < 0 || amountValue > 999999999) {
-      throw BackupException('Invalid budget data: amount out of valid range');
+      throw const BackupException('Invalid budget data: amount out of valid range');
     }
 
     // 类型验证 - month/year
     if (map['month'] is! int || map['year'] is! int) {
-      throw BackupException('Invalid budget data: month and year must be integers');
+      throw const BackupException('Invalid budget data: month and year must be integers');
     }
 
     // 月份范围验证
     final month = map['month'] as int;
     final year = map['year'] as int;
     if (month < 1 || month > 12) {
-      throw BackupException('Invalid budget data: month must be between 1 and 12');
+      throw const BackupException('Invalid budget data: month must be between 1 and 12');
     }
     if (year < 2000 || year > 2100) {
-      throw BackupException('Invalid budget data: year out of valid range');
+      throw const BackupException('Invalid budget data: year out of valid range');
     }
 
     return Budget(

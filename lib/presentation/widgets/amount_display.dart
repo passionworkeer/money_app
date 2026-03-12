@@ -20,7 +20,7 @@ class AmountDisplay extends StatelessWidget {
       children: [
         Text(
           label,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 14,
             color: AppColors.textSecondary,
           ),
@@ -76,13 +76,13 @@ class AmountInput extends StatelessWidget {
       ),
       decoration: InputDecoration(
         hintText: hint ?? '0.00',
-        hintStyle: TextStyle(
+        hintStyle: const TextStyle(
           fontSize: 32,
           fontWeight: FontWeight.bold,
           color: AppColors.textHint,
         ),
         prefixText: '¥ ',
-        prefixStyle: TextStyle(
+        prefixStyle: const TextStyle(
           fontSize: 32,
           fontWeight: FontWeight.bold,
           color: AppColors.expense,

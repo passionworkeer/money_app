@@ -113,7 +113,7 @@ void main() {
       ];
 
       // Set filter options that won't match any expense
-      final filterOptions = FilterOptions(
+      const filterOptions = FilterOptions(
         category: '交通',
         minAmount: 1000,
         maxAmount: 2000,
@@ -231,7 +231,7 @@ void main() {
       ];
 
       // Set category filter
-      final filterOptions = FilterOptions(category: '餐饮');
+      const filterOptions = FilterOptions(category: '餐饮');
 
       await tester.pumpWidget(
         createTestableWidget(

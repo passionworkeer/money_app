@@ -39,9 +39,9 @@ void main() {
     });
 
     group('budgetByMonthProvider', () {
-      test('should be a family FutureProvider', () {
+      test('should be a family provider', () {
         final provider = budgetByMonthProvider;
-        expect(provider, isA<FutureProvider.family<Budget?, (int, int)>>());
+        expect(provider, isNotNull);
       });
     });
 

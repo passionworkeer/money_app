@@ -233,7 +233,7 @@ void main() {
       });
 
       test('LocalClassificationResult toString works correctly', () {
-        final result = LocalClassificationResult(
+        const result = LocalClassificationResult(
           category: '餐饮',
           amount: 50.0,
           confidence: 0.8,

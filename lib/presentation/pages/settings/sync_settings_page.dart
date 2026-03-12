@@ -666,19 +666,19 @@ class _SyncSettingsPageState extends ConsumerState<SyncSettingsPage> {
             ],
           ),
           const SizedBox(height: 16),
-          _InfoItem(
+          const _InfoItem(
             icon: Icons.sync_problem_rounded,
             title: '冲突解决',
             description: '采用最后写入优先策略（last-write-wins）',
           ),
           const SizedBox(height: 12),
-          _InfoItem(
+          const _InfoItem(
             icon: Icons.offline_bolt_rounded,
             title: '离线支持',
             description: '本地数据将保存在设备上，联网后自动同步',
           ),
           const SizedBox(height: 12),
-          _InfoItem(
+          const _InfoItem(
             icon: Icons.security_rounded,
             title: '数据安全',
             description: '敏感数据使用加密传输和存储',

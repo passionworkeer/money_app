@@ -56,12 +56,6 @@ void main() {
   });
 
   group('AI Response Parsing Tests', () {
-    late AiService aiService;
-
-    setUp(() {
-      aiService = AiService();
-    });
-
     test('Response parsing handles valid JSON', () {
       // Test the private _parseAiResponse method via classification
       // We test the parsing logic indirectly

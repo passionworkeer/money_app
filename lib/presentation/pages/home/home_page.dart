@@ -114,18 +114,18 @@ class _HomePageState extends ConsumerState<HomePage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
+          const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 '你好 👋',
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.white70,
                 ),
               ),
-              const SizedBox(height: 4),
-              const Text(
+              SizedBox(height: 4),
+              Text(
                 AppStrings.appName,
                 style: TextStyle(
                   fontSize: 28,
@@ -200,27 +200,21 @@ class _HomePageState extends ConsumerState<HomePage> {
     final remaining = budgetAmount - spent;
 
     // Determine colors based on status
-    Color statusColor;
-    String statusText;
-    List<Color> gradient;
-
-    switch (status) {
-      case BudgetStatus.healthy:
-        statusColor = const Color(0xFF43A047);
-        statusText = '预算健康';
-        gradient = const [Color(0xFF43A047), Color(0xFF66BB6A)];
-        break;
-      case BudgetStatus.warning:
-        statusColor = const Color(0xFFFF9800);
-        statusText = '接近预算';
-        gradient = const [Color(0xFFFF9800), Color(0xFFFFB74D)];
-        break;
-      case BudgetStatus.exceeded:
-        statusColor = const Color(0xFFE53935);
-        statusText = '已超支';
-        gradient = const [Color(0xFFE53935), Color(0xFFEF5350)];
-        break;
-    }
+    final statusColor = switch (status) {
+      BudgetStatus.healthy => const Color(0xFF43A047),
+      BudgetStatus.warning => const Color(0xFFFF9800),
+      BudgetStatus.exceeded => const Color(0xFFE53935),
+    };
+    final statusText = switch (status) {
+      BudgetStatus.healthy => '预算健康',
+      BudgetStatus.warning => '接近预算',
+      BudgetStatus.exceeded => '已超支',
+    };
+    final gradient = switch (status) {
+      BudgetStatus.healthy => const [Color(0xFF43A047), Color(0xFF66BB6A)],
+      BudgetStatus.warning => const [Color(0xFFFF9800), Color(0xFFFFB74D)],
+      BudgetStatus.exceeded => const [Color(0xFFE53935), Color(0xFFEF5350)],
+    };
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -844,11 +838,11 @@ class _SpendingTrendsSheet extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
+          const Row(
             children: [
-              const Icon(Icons.trending_up, color: AppColors.primary),
-              const SizedBox(width: 8),
-              const Text(
+              Icon(Icons.trending_up, color: AppColors.primary),
+              SizedBox(width: 8),
+              Text(
                 '消费趋势分析',
                 style: TextStyle(
                   fontSize: 18,
@@ -1001,11 +995,11 @@ class _BudgetSuggestionSheet extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Row(
+          const Row(
             children: [
-              const Icon(Icons.lightbulb, color: AppColors.primary),
-              const SizedBox(width: 8),
-              const Text(
+              Icon(Icons.lightbulb, color: AppColors.primary),
+              SizedBox(width: 8),
+              Text(
                 'AI 预算建议',
                 style: TextStyle(
                   fontSize: 18,

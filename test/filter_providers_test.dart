@@ -175,7 +175,7 @@ void main() {
 
         // Note: In real test we'd need to mock allExpensesProvider
         // This tests the filter logic directly
-        final filter = const FilterOptions(category: 'food');
+        const filter = FilterOptions(category: 'food');
         final result = _applyFiltersTest(expenses, filter);
 
         expect(result.length, 1);
@@ -189,7 +189,7 @@ void main() {
           Expense(id: '3', amount: 150, description: 'test3', category: 'food', date: DateTime.now()),
         ];
 
-        final filter = const FilterOptions(minAmount: 100.0);
+        const filter = FilterOptions(minAmount: 100.0);
         final result = _applyFiltersTest(expenses, filter);
 
         expect(result.length, 2);
@@ -203,7 +203,7 @@ void main() {
           Expense(id: '3', amount: 150, description: 'test3', category: 'food', date: DateTime.now()),
         ];
 
-        final filter = const FilterOptions(maxAmount: 100.0);
+        const filter = FilterOptions(maxAmount: 100.0);
         final result = _applyFiltersTest(expenses, filter);
 
         expect(result.length, 2);
@@ -217,7 +217,7 @@ void main() {
           Expense(id: '3', amount: 150, description: 'test3', category: 'food', date: DateTime.now()),
         ];
 
-        final filter = const FilterOptions(minAmount: 50.0, maxAmount: 100.0);
+        const filter = FilterOptions(minAmount: 50.0, maxAmount: 100.0);
         final result = _applyFiltersTest(expenses, filter);
 
         expect(result.length, 2);
@@ -231,7 +231,7 @@ void main() {
           Expense(id: '3', amount: 200, description: '晚餐聚会', category: 'food', date: DateTime.now()),
         ];
 
-        final filter = const FilterOptions(searchQuery: '餐');
+        const filter = FilterOptions(searchQuery: '餐');
         final result = _applyFiltersTest(expenses, filter);
 
         expect(result.length, 2);
@@ -272,7 +272,7 @@ void main() {
           Expense(id: '2', amount: 50, description: 'new', category: 'food', date: DateTime(2024, 1, 10)),
         ];
 
-        final filter = const FilterOptions(sortBy: SortBy.dateDesc);
+        const filter = FilterOptions(sortBy: SortBy.dateDesc);
         final result = _applyFiltersTest(expenses, filter);
 
         expect(result.first.description, 'new');
@@ -284,7 +284,7 @@ void main() {
           Expense(id: '2', amount: 50, description: 'new', category: 'food', date: DateTime(2024, 1, 10)),
         ];
 
-        final filter = const FilterOptions(sortBy: SortBy.dateAsc);
+        const filter = FilterOptions(sortBy: SortBy.dateAsc);
         final result = _applyFiltersTest(expenses, filter);
 
         expect(result.first.description, 'old');
@@ -296,7 +296,7 @@ void main() {
           Expense(id: '2', amount: 100, description: 'big', category: 'food', date: DateTime.now()),
         ];
 
-        final filter = const FilterOptions(sortBy: SortBy.amountDesc);
+        const filter = FilterOptions(sortBy: SortBy.amountDesc);
         final result = _applyFiltersTest(expenses, filter);
 
         expect(result.first.amount, 100);
@@ -308,7 +308,7 @@ void main() {
           Expense(id: '2', amount: 50, description: 'small', category: 'food', date: DateTime.now()),
         ];
 
-        final filter = const FilterOptions(sortBy: SortBy.amountAsc);
+        const filter = FilterOptions(sortBy: SortBy.amountAsc);
         final result = _applyFiltersTest(expenses, filter);
 
         expect(result.first.amount, 50);

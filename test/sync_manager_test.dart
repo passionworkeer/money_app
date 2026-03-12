@@ -39,7 +39,7 @@ void main() {
     });
 
     test('SyncManager config can be updated via updateConfig', () async {
-      final newConfig = SyncConfig(
+      const newConfig = SyncConfig(
         provider: SyncProvider.supabase,
         supabaseUrl: 'https://example.supabase.co',
         supabaseAnonKey: 'test-key',
@@ -62,7 +62,7 @@ void main() {
       syncManager.status.value = SyncStatus.error;
       syncManager.errorMessage.value = 'Previous error';
 
-      final newConfig = const SyncConfig(
+      const newConfig = SyncConfig(
         provider: SyncProvider.none,
       );
 

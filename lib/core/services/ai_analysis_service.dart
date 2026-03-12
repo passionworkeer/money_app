@@ -251,11 +251,17 @@ ${budget != null ? '预算信息：总额 ¥${budget.amount}，已使用 ¥${exp
       '500+': 0,
     };
     for (final expense in monthExpenses) {
-      if (expense.amount < 50) amountRanges['0-50'] = (amountRanges['0-50'] ?? 0) + 1;
-      else if (expense.amount < 100) amountRanges['50-100'] = (amountRanges['50-100'] ?? 0) + 1;
-      else if (expense.amount < 200) amountRanges['100-200'] = (amountRanges['100-200'] ?? 0) + 1;
-      else if (expense.amount < 500) amountRanges['200-500'] = (amountRanges['200-500'] ?? 0) + 1;
-      else amountRanges['500+'] = (amountRanges['500+'] ?? 0) + 1;
+      if (expense.amount < 50) {
+        amountRanges['0-50'] = (amountRanges['0-50'] ?? 0) + 1;
+      } else if (expense.amount < 100) {
+        amountRanges['50-100'] = (amountRanges['50-100'] ?? 0) + 1;
+      } else if (expense.amount < 200) {
+        amountRanges['100-200'] = (amountRanges['100-200'] ?? 0) + 1;
+      } else if (expense.amount < 500) {
+        amountRanges['200-500'] = (amountRanges['200-500'] ?? 0) + 1;
+      } else {
+        amountRanges['500+'] = (amountRanges['500+'] ?? 0) + 1;
+      }
     }
 
     return {

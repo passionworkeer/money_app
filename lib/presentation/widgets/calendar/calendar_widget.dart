@@ -32,7 +32,6 @@ class CalendarWidget extends ConsumerWidget {
         // Calendar
         monthlyTotals.when(
           data: (totals) => _buildCalendar(
-            context,
             ref,
             selectedDate,
             focusedMonth,
@@ -107,7 +106,7 @@ class CalendarWidget extends ConsumerWidget {
             onSelectionChanged: (selected) {
               ref.read(calendarViewModeProvider.notifier).state = selected.first;
             },
-            style: ButtonStyle(
+            style: const ButtonStyle(
               visualDensity: VisualDensity.compact,
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             ),
@@ -118,7 +117,6 @@ class CalendarWidget extends ConsumerWidget {
   }
 
   Widget _buildCalendar(
-    BuildContext context,
     WidgetRef ref,
     DateTime selectedDate,
     DateTime focusedMonth,
@@ -135,15 +133,15 @@ class CalendarWidget extends ConsumerWidget {
           : CalendarFormat.week,
       startingDayOfWeek: StartingDayOfWeek.monday,
       availableGestures: AvailableGestures.horizontalSwipe,
-      headerStyle: HeaderStyle(
+      headerStyle: const HeaderStyle(
         formatButtonVisible: false,
         titleCentered: true,
-        titleTextStyle: const TextStyle(
+        titleTextStyle: TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.bold,
         ),
-        leftChevronIcon: const Icon(Icons.chevron_left, color: AppColors.primary),
-        rightChevronIcon: const Icon(Icons.chevron_right, color: AppColors.primary),
+        leftChevronIcon: Icon(Icons.chevron_left, color: AppColors.primary),
+        rightChevronIcon: Icon(Icons.chevron_right, color: AppColors.primary),
       ),
       daysOfWeekStyle: DaysOfWeekStyle(
         weekdayStyle: TextStyle(
@@ -183,13 +181,13 @@ class CalendarWidget extends ConsumerWidget {
       ),
       calendarBuilders: CalendarBuilders(
         defaultBuilder: (context, day, focusedDay) {
-          return _buildDayCell(context, day, dailyTotals, false, false);
+          return _buildDayCell(day, dailyTotals, false, false);
         },
         todayBuilder: (context, day, focusedDay) {
-          return _buildDayCell(context, day, dailyTotals, true, false);
+          return _buildDayCell(day, dailyTotals, true, false);
         },
         selectedBuilder: (context, day, focusedDay) {
-          return _buildDayCell(context, day, dailyTotals, false, true);
+          return _buildDayCell(day, dailyTotals, false, true);
         },
         markerBuilder: (context, day, events) {
           return const SizedBox.shrink();
@@ -213,7 +211,6 @@ class CalendarWidget extends ConsumerWidget {
   }
 
   Widget _buildDayCell(
-    BuildContext context,
     DateTime day,
     Map<DateTime, double> dailyTotals,
     bool isToday,

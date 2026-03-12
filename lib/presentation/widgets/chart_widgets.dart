@@ -49,9 +49,7 @@ class PieChartWidget extends StatelessWidget {
   List<PieChartSectionData> _buildSections() {
     final entries = categoryTotals.entries.toList();
     return entries.asMap().entries.map((entry) {
-      final index = entry.key;
       final data = entry.value;
-      final category = ExpenseCategory.fromValue(data.key);
       final color = AppColors.categoryColors[data.key] ?? AppColors.textSecondary;
       final percentage = total > 0 ? (data.value / total * 100) : 0;
 

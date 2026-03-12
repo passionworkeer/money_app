@@ -273,7 +273,7 @@ class _SectionHeader extends StatelessWidget {
           ),
           child: Text(
             '$count',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 12,
               color: AppColors.primary,
               fontWeight: FontWeight.bold,
@@ -301,7 +301,7 @@ class _PresetChip extends StatelessWidget {
       label: Text(label),
       onPressed: onTap,
       backgroundColor: AppColors.primary.withOpacity(0.1),
-      labelStyle: TextStyle(color: AppColors.primary),
+      labelStyle: const TextStyle(color: AppColors.primary),
     );
   }
 }

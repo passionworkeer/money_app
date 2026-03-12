@@ -105,7 +105,7 @@ class S3SyncService implements SyncService {
     String amzDate,
     String payloadHash,
   ) {
-    final service = 's3';
+    const service = 's3';
     // 从配置读取 region，默认为 us-east-1
     final region = _config.s3Region ?? 'us-east-1';
 
@@ -115,11 +115,7 @@ class S3SyncService implements SyncService {
         ? ''
         : request.url.query
             .split('&')
-            .map((e) => Uri.encodeComponent(e.split('=')[0]) +
-                '=' +
-                (e.contains('=')
-                    ? Uri.encodeComponent(e.split('=')[1])
-                    : ''))
+            .map((e) => '${Uri.encodeComponent(e.split('=')[0])}=${e.contains('=') ? Uri.encodeComponent(e.split('=')[1]) : ''}')
             .join('&');
 
     final signedHeaders = request.headers.keys
@@ -142,7 +138,7 @@ class S3SyncService implements SyncService {
     ].join('\n');
 
     // String to Sign
-    final algorithm = 'AWS4-HMAC-SHA256';
+    const algorithm = 'AWS4-HMAC-SHA256';
     final credentialScope = '$dateStamp/$region/$service/aws4_request';
     final stringToSign = [
       algorithm,
